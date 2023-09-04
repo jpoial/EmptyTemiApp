@@ -38,7 +38,7 @@ import com.robotemi.sdk.telepresence.Participant
 import com.robotemi.sdk.voice.ITtsService
 import com.robotemi.sdk.voice.model.TtsVoice
 
-class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnSdkExceptionListener {
+class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnSdkExceptionListener, OnRobotReadyListener {
 
     private lateinit var robot: Robot
 
@@ -69,8 +69,11 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
         super.onDestroy()
     }
 
+    override fun onRobotReady(isReady: Boolean) {
+
+    }
+
     override fun onSdkError(sdkException: SdkException) {
-        TODO("Not yet implemented")
     }
 
     override fun onRequestPermissionResult(
@@ -78,13 +81,13 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
         grantResult: Int,
         requestCode: Int
     ) {
-        TODO("Not yet implemented")
     }
 
     fun speak(sentence: Any?) {
         val sentenceString = sentence?.toString() ?: ""
         robot.speak(create(sentenceString, false, TtsRequest.Language.SYSTEM, true, false))
     }
+
 
 
 }

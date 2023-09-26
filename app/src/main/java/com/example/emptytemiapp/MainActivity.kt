@@ -38,8 +38,9 @@ import com.robotemi.sdk.telepresence.Participant
 import com.robotemi.sdk.voice.ITtsService
 import com.robotemi.sdk.voice.model.TtsVoice
 
-class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnSdkExceptionListener, OnRobotReadyListener {
+class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnSdkExceptionListener, OnRobotReadyListener, OnLocationsUpdatedListener {
 
+    private lateinit var places: List<String>
     private lateinit var robot: Robot
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +56,15 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
     override fun onStart() {
         super.onStart()
         robot.showTopBar()
+        robot.addOnRobotReadyListener(this)
+        robot.addOnLocationsUpdatedListener(this)
 
     }
 
     override fun onStop() {
 
+        robot.removeOnLocationsUpdateListener(this)
+        robot.removeOnRobotReadyListener(this)
         super.onStop()
     }
 
@@ -70,7 +75,7 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
     }
 
     override fun onRobotReady(isReady: Boolean) {
-
+        places = robot.locations
     }
 
     override fun onSdkError(sdkException: SdkException) {
@@ -81,6 +86,10 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
         grantResult: Int,
         requestCode: Int
     ) {
+    }
+
+    override fun onLocationsUpdated(locations: List<String>) {
+        places = robot.locations
     }
 
     fun speak(sentence: Any?) {

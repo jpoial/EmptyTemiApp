@@ -8,9 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/SkillTheme"
+        android:theme="@style/Theme.EmptyTemiApp"
         android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <!--
+        android:theme="@style/SkillTheme"
+        temi default system theme
+
+        -->
 
         <meta-data
             android:name="com.robotemi.sdk.metadata.SKILL"

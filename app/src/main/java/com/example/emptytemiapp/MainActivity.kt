@@ -3,6 +3,7 @@ package com.example.emptytemiapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.robotemi.sdk.*
 import com.robotemi.sdk.Robot.*
 import com.robotemi.sdk.Robot.Companion.getInstance
@@ -97,6 +98,23 @@ class MainActivity : AppCompatActivity(), OnRequestPermissionResultListener, OnS
         val sentenceString = sentence?.toString() ?: ""
         robot.speak(create(sentenceString, false, TtsRequest.Language.SYSTEM, true, false))
     }
+
+
+
+
+    fun a(places: List<String>) {
+        robot.patrol(locations = places, times = 2, nonstop = false, waiting = 3 )
+    }
+
+    fun b(place: String) {
+        robot.goTo(location = place, backwards = null, noBypass = null, speedLevel = null)
+    }
+
+
+
+    //https://github.com/robotemi/sdk/wiki/Locations    map
+
+    //https://github.com/robotemi/sdk/wiki/Movement     manual movement
 
 
 

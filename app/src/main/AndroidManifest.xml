@@ -11,13 +11,14 @@
         android:theme="@style/Theme.EmptyTemiApp"
         android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
-
         <!--
         android:theme="@style/SkillTheme"
         temi default system theme
 
         -->
 
+        <!--
+        show in temis apps -->
         <meta-data
             android:name="com.robotemi.sdk.metadata.SKILL"
             android:value="@string/app_name" />
